@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                       </div>
                       <div class="modal-footer">
                         <button onclick="editPost(${index})" class="btn btn-secondary" data-bs-dismiss="modal">Edit</button>
-                        <button onclick="deletePost(${index})" class="btn btn-danger">Delete</button>
+                        <button onclick="deletePost(${index})" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
                       </div>
                     </div>
                   </div>
