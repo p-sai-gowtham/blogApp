@@ -9,11 +9,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const postElement = document.createElement('div');
             postElement.classList.add('blog-post');
             postElement.innerHTML = `
-                <h2>${post.title}</h2>
-                <p>${post.content}</p>
-                <div class="actions">
-                    <button onclick="editPost(${index})">Edit</button>
-                    <button onclick="deletePost(${index})">Delete</button>
+                <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal${index}">
+                  Blog ${index + 1}
+                </button>
+                        
+                <div class="modal fade" id="exampleModal${index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">${post.title}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p>${post.content}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button onclick="editPost(${index})" class="btn btn-secondary" data-bs-dismiss="modal">Edit</button>
+                        <button onclick="deletePost(${index})" class="btn btn-danger">Delete</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             `;
             postsContainer.appendChild(postElement);
@@ -33,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (editId) {
             posts[editId] = { title, content };
             document.getElementById('edit-id').value = '';
-            form.querySelector('button[type="submit"]').textContent = 'Add Post';
+            form.querySelector('button').textContent = 'Add Post';
         } else {
             posts.push({ title, content });
         }
