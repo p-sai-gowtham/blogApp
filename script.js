@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const postElement = document.createElement('div');
             postElement.classList.add('blog-post');
             postElement.innerHTML = `
-                <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal${index}">
-                  Blog ${index + 1}
+                <button type="button" onclick="updateViews(${index});" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal${index}">
+                  ${post.title} <span class="badge text-bg-secondary">${post.views}</span>
                 </button>
                         
                 <div class="modal fade" id="exampleModal${index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('edit-id').value = '';
             form.querySelector('button').textContent = 'Add Post';
         } else {
-            posts.push({ title, content });
+            posts.push({ title, content, views: 0 });
         }
 
         savePosts();
@@ -68,6 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     deletePost = (index) => {
         posts.splice(index, 1);
+        savePosts();
+        renderPosts();
+    };
+
+    updateViews = (index) => {
+        posts[index].views++;
         savePosts();
         renderPosts();
     };
