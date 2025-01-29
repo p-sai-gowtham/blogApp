@@ -45,6 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const content = document.getElementById('content').value;
         const editId = document.getElementById('edit-id').value;
 
+        if (!title || !content) {
+            alert('Please fill in all fields');
+            return;
+        }
+
         if (editId) {
             posts[editId] = { title, content };
             document.getElementById('edit-id').value = '';
